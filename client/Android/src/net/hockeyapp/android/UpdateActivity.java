@@ -30,7 +30,7 @@ import android.widget.TextView;
 public class UpdateActivity extends ListActivity {
   public static int iconDrawableId = -1;
 
-  private DownloadFileTask downloadTask;
+  protected DownloadFileTask downloadTask;
   private UpdateInfoAdapter adapter;
   
   public void onCreate(Bundle savedInstanceState) {
@@ -89,16 +89,16 @@ public class UpdateActivity extends ListActivity {
     startDownloadTask();
   }
   
-  private void startDownloadTask() {
+  protected void startDownloadTask() {
     downloadTask = new DownloadFileTask(this, getIntent().getStringExtra("url"));
     downloadTask.execute();
   }
 
-  private class DownloadFileTask extends AsyncTask<String, Integer, Boolean>{
+  protected class DownloadFileTask extends AsyncTask<String, Integer, Boolean>{
     private Context context;
     private String urlString;
-    private String filename;
-    private String filePath;
+    protected String filename;
+    protected String filePath;
     private ProgressDialog progressDialog;
 
     public DownloadFileTask(Context context, String urlString) {
@@ -200,7 +200,7 @@ public class UpdateActivity extends ListActivity {
        }
      }
 
-     private String getURLString() {
+     protected String getURLString() {
        return urlString + "&type=apk";      
      }
   }

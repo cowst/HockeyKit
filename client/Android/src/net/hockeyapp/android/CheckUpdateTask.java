@@ -21,7 +21,10 @@ import android.os.AsyncTask;
 import android.provider.Settings;
 
 public class CheckUpdateTask extends AsyncTask<String, String, JSONArray>{
-  private Activity activity = null;
+	
+  protected static Class<?> UpdateActivityClass = UpdateActivity.class;
+
+  protected Activity activity = null;
   private String urlString = null;
   private String appIdentifier = null;
   
@@ -88,7 +91,7 @@ public class CheckUpdateTask extends AsyncTask<String, String, JSONArray>{
     }
   }
   
-  private String getURLString(String format) {
+  protected String getURLString(String format) {
     StringBuilder builder = new StringBuilder();
     builder.append(urlString);
     builder.append("api/2/apps/");
@@ -134,7 +137,7 @@ public class CheckUpdateTask extends AsyncTask<String, String, JSONArray>{
     builder.create().show();
   }
 
-  private static String convertStreamToString(InputStream inputStream) {
+  protected static String convertStreamToString(InputStream inputStream) {
     BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream), 1024);
     StringBuilder stringBuilder = new StringBuilder();
 
